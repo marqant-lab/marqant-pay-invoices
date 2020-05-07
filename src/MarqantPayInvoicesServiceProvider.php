@@ -33,7 +33,7 @@ class MarqantPayInvoicesServiceProvider extends ServiceProvider
      */
     private function setupConfig()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/marqant-pay.php', 'marqant-pay');
+        $this->mergeConfigFrom(__DIR__ . '/../config/marqant-pay-invoices.php', 'marqant-pay-invoices');
     }
 
     /**
