@@ -9,7 +9,10 @@
             "email": "thomas@du.digital"
         }
     ],
-    "require": {},
+    "require": {
+        "marqant-lab/marqant-pay": "~0.0.1",
+        "barryvdh/laravel-snappy": "^0.4.7"
+    },
     "autoload": {
         "psr-4": {
             "Marqant\\MarqantPayInvoices\\Tests\\": "tests/",
