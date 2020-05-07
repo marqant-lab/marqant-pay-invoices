@@ -1,0 +1,26 @@
+{
+    "name": "marqant-lab/marqant-pay-invoices",
+    "description": "PDF invoices for marqant-lab/marqant-pay",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Venturini",
+            "email": "thomas@du.digital"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Marqant\\MarqantPayInvoices\\Tests\\": "tests/",
+            "Marqant\\MarqantPayInvoices\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Marqant\\MarqantPayInvoices\\MarqantPayInvoicesServiceProvider"
+            ]
+        }
+    }
+}
