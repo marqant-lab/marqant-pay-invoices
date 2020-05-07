@@ -3,8 +3,6 @@
 namespace Marqant\MarqantPayInvoices;
 
 use Illuminate\Support\ServiceProvider;
-use Marqant\MarqantPayInvoices\Mixins\PaymentInvoicesMixin;
-use Marqant\MarqantPayInvoices\Mixins\MarqantPayInvoicesMixin;
 
 class MarqantPayInvoicesServiceProvider extends ServiceProvider
 {
@@ -22,10 +20,10 @@ class MarqantPayInvoicesServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
-     * @throws \ReflectionException
      */
     public function boot()
     {
+        $this->setupMigrations();
     }
 
     /**
@@ -36,5 +34,15 @@ class MarqantPayInvoicesServiceProvider extends ServiceProvider
     private function setupConfig()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/marqant-pay-invoices.php', 'marqant-pay-invoices');
+    }
+
+    /**
+     * Setup migrations in boot method.
+     *
+     * @return void
+     */
+    private function setupMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }
