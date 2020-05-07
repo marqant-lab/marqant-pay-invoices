@@ -14,4 +14,26 @@
 
 return [
 
+    /*
+     |--------------------------------------------------------------------------
+     | PDF View
+     |--------------------------------------------------------------------------
+     |
+     | In this section you can set the template for the pdf invoices.
+     |
+     */
+
+    'pdf_view' => 'pdf_invoice',
+
+    /*
+     |--------------------------------------------------------------------------
+     | PDF Path
+     |--------------------------------------------------------------------------
+     |
+     | In this section you can set the storage path under which the pdf invoices
+     | are stored. Make sure they are reachable for download!
+     |
+     */
+
+    'pdf_path' => 'app/public/downloads/invoices',
 ];
