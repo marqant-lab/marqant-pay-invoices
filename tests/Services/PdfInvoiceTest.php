@@ -40,7 +40,7 @@ class PdfInvoiceTest extends MarqantPayInvoicesTestCase
         $User = $this->createBillableUser();
 
         // charge the user
-        $Payment = $User->charge($amount);
+        $Payment = $User->charge($amount, 'test_create_pdf_and_save_on_payment');
 
         // check that we got back an instance of Payment
         $this->assertInstanceOf(config('marqant-pay.payment_model'), $Payment);
