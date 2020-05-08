@@ -22,3 +22,12 @@ composer require h4cc/wkhtmltopdf-amd64 0.12.x
 composer require h4cc/wkhtmltoimage-amd64 0.12.x
 ```
 
+## Usage
+
+### Overwrite the default template
+
+This package ships with a default template for your PDF invoices. The template will receive the whole payment model
+ instance, so you can make use of all attributes available on it. You have two ways to overwrite the default template
+ . You can either overwrite it by creating your own template under `resources/views/vendor/marqant-lab/marqant-pay
+ /pdf/invoice.blade.php`, or you overwrite the config value `marqant-pay-invoices.pdf_view` in the `marqant-pay
+ -invoices` configuration file.
