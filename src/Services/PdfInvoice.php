@@ -2,6 +2,8 @@
 
 namespace Marqant\MarqantPayInvoices\Services;
 
+use Barryvdh\Snappy\PdfWrapper;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Database\Eloquent\Model;
 use Marqant\MarqantPay\Services\BaseInvoiceService;
 
@@ -23,12 +25,12 @@ class PdfInvoice extends BaseInvoiceService
 
         // set up storage path
         $file_name = uniqid('invoice') . "_" . time() . ".pdf";
-        $base_path = config('marqant-pay-invoice.pdf_path');
+        $base_path = config('marqant-pay-invoices.pdf_path');
         $path = "{$base_path}/{$file_name}";
 
         // create the pdf from invoice and save it under path
         $this->bootstrapInvoice($Payment)
-            ->generate($path);
+            ->save($path);
 
         // update the payment
         $Payment->update([
@@ -44,9 +46,14 @@ class PdfInvoice extends BaseInvoiceService
      *
      * @param \Illuminate\Database\Eloquent\Model $Payment
      *
-     * @return \Barryvdh\Snappy\IlluminateSnappyPdf
+     * @return Barryvdh\Snappy\PdfWrapper
      */
-    private function bootstrapInvoice(Model $Payment): IlluminateSnappyPdf
+    private function bootstrapInvoice(Model $Payment): PdfWrapper
     {
+        $view = config('marqant-pay-invoices.pdf_view');
+
+        $pdf = SnappyPdf::loadView($view, $Payment->toArray());
+
+        return $pdf;
     }
 }

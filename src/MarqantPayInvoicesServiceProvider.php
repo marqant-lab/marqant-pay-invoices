@@ -24,6 +24,8 @@ class MarqantPayInvoicesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setupMigrations();
+
+        $this->setupResources();
     }
 
     /**
@@ -44,5 +46,15 @@ class MarqantPayInvoicesServiceProvider extends ServiceProvider
     private function setupMigrations()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
+    /**
+     * Setup resources in boot method.
+     *
+     * @return void
+     */
+    private function setupResources()
+    {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'marqant-pay-invoices');
     }
 }
