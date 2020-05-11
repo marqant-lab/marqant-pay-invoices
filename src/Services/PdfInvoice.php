@@ -46,7 +46,7 @@ class PdfInvoice extends BaseInvoiceService
      *
      * @param \Illuminate\Database\Eloquent\Model $Payment
      *
-     * @return Barryvdh\Snappy\PdfWrapper
+     * @return \Barryvdh\Snappy\PdfWrapper
      */
     private function bootstrapInvoice(Model $Payment): PdfWrapper
     {
