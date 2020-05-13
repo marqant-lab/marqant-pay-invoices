@@ -22,6 +22,11 @@ composer require h4cc/wkhtmltopdf-amd64 0.12.x
 composer require h4cc/wkhtmltoimage-amd64 0.12.x
 ```
 
+After that don't forget publish the config file and set the path to the binary,  
+and add this config file to your project git repository.  
+For example [laravel-snappy](https://github.com/barryvdh/laravel-snappy#snappy-config-file).
+
+
 ## Usage
 
 ### Overwrite the default template
