@@ -35,5 +35,5 @@ return [
      |
      */
 
-    'pdf_path' => storage_path('app/public/downloads/invoices'),
+    'pdf_path' => 'downloads/invoices',
 ];

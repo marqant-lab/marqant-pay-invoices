@@ -5,6 +5,7 @@ namespace Marqant\MarqantPayInvoices\Services;
 use Barryvdh\Snappy\PdfWrapper;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Marqant\MarqantPay\Services\BaseInvoiceService;
 
 class PdfInvoice extends BaseInvoiceService
@@ -28,14 +29,20 @@ class PdfInvoice extends BaseInvoiceService
         $base_path = config('marqant-pay-invoices.pdf_path');
         $path = "{$base_path}/{$file_name}";
 
-        // create the pdf from invoice and save it under path
-        $this->bootstrapInvoice($Payment)
-            ->save($path);
+        // create the pdf output from invoice
+        $output = $this->bootstrapInvoice($Payment)
+            ->output();
 
-        // update the payment
-        $Payment->update([
-            'invoice' => $path,
-        ]);
+        // get our disk to store the PDF in.
+        $disk = Storage::disk(env('FILESYSTEM_DRIVER', 'public'));
+
+        // save the file with the PDF output.
+        if ($disk->put($path, $output)) {
+            // update the payment invoice path
+            $Payment->update([
+                'invoice' => $path,
+            ]);
+        }
 
         // return the updated payment
         return $Payment;
