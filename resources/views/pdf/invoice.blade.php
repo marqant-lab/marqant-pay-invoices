@@ -174,7 +174,7 @@
             <td colspan="4"></td>
         </tr>
         @if ($payment->subscription)
-            @foreach($payment->billable->plans as $plan)
+            @foreach($payment->billable->plans()->whereNull('provider')->get() as $plan)
                 <tr class="leistungsrow">
                     <td class="text-center">
                         1

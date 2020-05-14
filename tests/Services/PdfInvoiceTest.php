@@ -34,7 +34,7 @@ class PdfInvoiceTest extends MarqantPayInvoicesTestCase
         //////////////////////////////////////
         // Create Payment
 
-        $amount = 999; // 9,99 ($|€|...)
+        $amount = 9.99; // 9,99 ($|€|...)
 
         // create fake customer through factory
         $User = $this->createBillableUser();
@@ -46,7 +46,7 @@ class PdfInvoiceTest extends MarqantPayInvoicesTestCase
         $this->assertInstanceOf(config('marqant-pay.payment_model'), $Payment);
 
         // check the amount
-        $this->assertEquals($amount, $Payment->amount_raw);
+        $this->assertEquals($amount, $Payment->amount);
 
         // check if we billed the correct user
         $this->assertEquals($User->provider_id, $Payment->customer);
