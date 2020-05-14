@@ -46,7 +46,7 @@ class PdfInvoiceTest extends MarqantPayInvoicesTestCase
         $this->assertInstanceOf(config('marqant-pay.payment_model'), $Payment);
 
         // check the amount
-        $this->assertEquals($amount, $Payment->amount);
+        $this->assertEquals($amount, $Payment->amount_raw);
 
         // check if we billed the correct user
         $this->assertEquals($User->provider_id, $Payment->customer);
