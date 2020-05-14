@@ -59,7 +59,9 @@ class PdfInvoice extends BaseInvoiceService
     {
         $view = config('marqant-pay-invoices.pdf_view');
 
-        $pdf = SnappyPdf::loadView($view, $Payment->toArray());
+        $pdf = SnappyPdf::loadView($view, [
+            'payment' => $Payment,
+        ]);
 
         return $pdf;
     }
