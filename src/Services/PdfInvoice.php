@@ -36,6 +36,8 @@ class PdfInvoice extends BaseInvoiceService
         // get our disk to store the PDF in.
         $disk = Storage::disk(env('FILESYSTEM_DRIVER', 'public'));
 
+        // ddi('test');
+
         // save the file with the PDF output.
         if ($disk->put($path, $output)) {
             // update the payment invoice path
