@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "marqant-lab/marqant-pay": "~0.0.1",
+        "marqant-lab/marqant-pay": "*",
         "barryvdh/laravel-snappy": "^0.4.7"
     },
     "autoload": {

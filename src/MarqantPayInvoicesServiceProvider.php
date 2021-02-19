@@ -3,6 +3,8 @@
 namespace Marqant\MarqantPayInvoices;
 
 use Illuminate\Support\ServiceProvider;
+use Marqant\MarqantPay\Services\MarqantPay;
+use Marqant\MarqantPayInvoices\Mixins\MarqantPayMixin;
 
 class MarqantPayInvoicesServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,8 @@ class MarqantPayInvoicesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->setupConfig();
+
+        $this->setupMixins();
     }
 
     /**
@@ -24,6 +28,8 @@ class MarqantPayInvoicesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setupMigrations();
+
+        $this->setupResources();
     }
 
     /**
@@ -44,5 +50,27 @@ class MarqantPayInvoicesServiceProvider extends ServiceProvider
     private function setupMigrations()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
+    /**
+     * Setup mixins to extend the baspackage through the Macroable trait in register method.
+     *
+     * @return void
+     *
+     * @throws \ReflectionException
+     */
+    private function setupMixins()
+    {
+        MarqantPay::mixin(app(MarqantPayMixin::class));
+    }
+
+    /**
+     * Setup resources in boot method.
+     *
+     * @return void
+     */
+    private function setupResources()
+    {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'marqant-pay-invoices');
     }
 }

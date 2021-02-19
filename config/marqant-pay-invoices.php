@@ -13,7 +13,6 @@
  */
 
 return [
-
     /*
      |--------------------------------------------------------------------------
      | PDF View
@@ -23,7 +22,7 @@ return [
      |
      */
 
-    'pdf_view' => 'pdf_invoice',
+    'pdf_view' => 'marqant-pay-invoices::pdf.invoice',
 
     /*
      |--------------------------------------------------------------------------
@@ -35,5 +34,5 @@ return [
      |
      */
 
-    'pdf_path' => 'app/public/downloads/invoices',
+    'pdf_path' => 'downloads/invoices',
 ];
